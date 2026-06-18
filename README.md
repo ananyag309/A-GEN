@@ -22,6 +22,16 @@ and automatically:
 5. Generates code file-by-file
 6. Creates a complete project structure
 
+<br>
+
+<p>
+  <img src="assests\architecture.png" alt="A-Gen Architecture Diagram" width="400">
+</p>
+
+<p>
+  <em>A-Gen Multi-Agent Workflow: Planner → Architect → Coder → Generated Project</em>
+</p>
+
 ---
 
 # Key Features
