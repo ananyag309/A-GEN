@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleWeatherApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>SimpleWeatherApp</h1>
+    </header>
+    <main>
+        <section id="weather-container">
+            <div id="current-weather">
+                <!-- City name -->
+                <h2 id="city-name"></h2>
+                <!-- Temperature -->
+                <p id="temperature"></p>
+                <!-- Description -->
+                <p id="description"></p>
+                <!-- Additional details -->
+                <p id="humidity"></p>
+                <p id="wind"></p>
+                <!-- Weather icon -->
+                <img id="weather-icon" alt="Weather icon" />
+            </div>
+            <button id="unit-toggle" aria-label="Toggle temperature unit">°C / °F</button>
+            <div id="forecast">
+                <!-- Forecast cards will be injected here -->
+            </div>
+        </section>
+        <form id="search-form" aria-label="Search city">
+            <input id="city-input" type="text" placeholder="Enter city" required />
+            <button type="submit">Search</button>
+        </form>
+        <div id="loading" hidden>
+            <!-- Loading spinner can be styled via CSS -->
+            Loading...
+        </div>
+        <div id="error-message" hidden role="alert"></div>
+    </main>
+</body>
+</html>

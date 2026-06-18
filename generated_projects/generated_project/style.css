@@ -1,0 +1,257 @@
+/*
+  style.css – Visual Design System & Responsive Layout for ColorfulTodo
+  ---------------------------------------------------------------
+  This stylesheet defines:
+  • CSS custom properties (variables) for a vibrant theme and its dark‑mode counterpart.
+  • Base layout using flexbox/grid for the app, header, input area, task list and filters.
+  • Interactive element styling with smooth transitions.
+  • Completed‑task appearance, drag‑and‑drop visual cues, and responsive behaviour.
+*/
+
+/* -------------------------------------------------------------------------- */
+/* 1. Theme variables – light mode (default) */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Primary palette */
+  --primary-color: #4a90e2;           /* Header background */
+  --secondary-color: #f5f7fa;         /* Input & button background */
+  --accent-color: #e94e77;            /* Accent – e.g., hover, drop target */
+
+  /* Neutral colors */
+  --bg-color: #ffffff;                /* Page background */
+  --text-color: #333333;              /* Primary text */
+
+  /* Dark‑mode variants – will be overridden in .dark-mode */
+  --primary-color-dark: #1e3a8a;
+  --secondary-color-dark: #1f2937;
+  --accent-color-dark: #f472b6;
+  --bg-color-dark: #111827;
+  --text-color-dark: #e5e7eb;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Dark‑mode overrides – applied when <html class="dark-mode"> */
+/* -------------------------------------------------------------------------- */
+.dark-mode {
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  --accent-color: var(--accent-color-dark);
+  --bg-color: var(--bg-color-dark);
+  --text-color: var(--text-color-dark);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Global resets & base styles */
+/* -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+.app {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Header */
+/* -------------------------------------------------------------------------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.header button {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.header button:hover {
+  transform: scale(1.1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Input area – task entry */
+/* -------------------------------------------------------------------------- */
+.input-area {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.input-area input[type="text"],
+.input-area input[type="date"] {
+  flex: 1 1 auto;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.input-area input[type="text"]:focus,
+.input-area input[type="date"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.input-area button {
+  padding: 0.5rem 1rem;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-area button:hover {
+  background-color: darken(var(--accent-color), 10%);
+  transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Task list */
+/* -------------------------------------------------------------------------- */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background-color: var(--secondary-color);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 4px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.task-list li .task-content {
+  flex: 1 1 auto;
+  margin-right: 1rem;
+  word-break: break-word;
+}
+
+.task-list li button {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.task-list li button:hover {
+  color: var(--accent-color);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Completed task style */
+/* -------------------------------------------------------------------------- */
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 8. Filters */
+/* -------------------------------------------------------------------------- */
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 0.4rem 0.8rem;
+  background-color: var(--secondary-color);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 9. Drag‑and‑drop visual cues */
+/* -------------------------------------------------------------------------- */
+.dragging {
+  opacity: 0.5;
+}
+
+.drop-target {
+  border-top: 2px solid var(--accent-color);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 10. Responsive layout */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .input-area {
+    flex-direction: column;
+  }
+
+  .input-area input[type="text"],
+  .input-area input[type="date"],
+  .input-area button {
+    width: 100%;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Helper: darken function using CSS custom property fallback (optional) */
+/* -------------------------------------------------------------------------- */
+/* Note: CSS does not have a native darken() function; the line below is a fallback for browsers
+   that support color-mod() or using a pre‑processor. It will be ignored otherwise. */
+@supports (color: color-mod(var(--accent-color) blackness(10%))) {
+  .input-area button:hover {
+    background-color: color-mod(var(--accent-color) blackness(10%));
+  }
+}

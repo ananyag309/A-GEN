@@ -1,0 +1,110 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar li {
+  margin-right: 20px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbar ul {
+    flex-direction: column;
+  }
+  .navbar li {
+    margin-bottom: 10px;
+  }
+}
+
+/* Weather Display Styles */
+.weather-display {
+  width: 300px;
+  height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Animation Styles */
+@keyframes animateWeather {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.weather-display.animate {
+  animation: animateWeather 2s infinite;
+}
+
+/* Function to animate the weather display */
+function animateWeather(weatherData) {
+  const weatherDisplay = document.querySelector('.weather-display');
+  if (weatherData) {
+    weatherDisplay.classList.add('animate');
+  } else {
+    weatherDisplay.classList.remove('animate');
+  }
+}
+
+/* Import HTML structure */
+import { index } from './index.html';
+
+/* Get weather data */
+function getWeatherData() {
+  // Implement logic to get weather data
+  return {
+    temperature: 25,
+    humidity: 60,
+    condition: 'Sunny'
+  };
+}
+
+/* Display weather data */
+function displayWeather(weatherData) {
+  const weatherDisplay = document.querySelector('.weather-display');
+  weatherDisplay.innerHTML = `Temperature: ${weatherData.temperature}°C
+Humidity: ${weatherData.humidity}%
+Condition: ${weatherData.condition}`;
+}
+
+/* Main function */
+function main() {
+  const weatherData = getWeatherData();
+  animateWeather(weatherData);
+  displayWeather(weatherData);
+}
+
+main();
